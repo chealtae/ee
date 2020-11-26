@@ -1,13 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home.vue'
-import Cart from '@/components/Cart.vue'
-import Index from '@/components/Admin/Index'
-import Edit from '@/components/Admin/Edit'
-import New from '@/components/Admin/New'
-import Product from '@/components/Admin/Product'
+import Home from '@/page/Home'
+import Cart from '@/page/Cart'
 import Vuex from '@/components/Vuex'
-import Details from '@/components/Details'
+import Details from '@/page/Details'
+import Login from '../page/Login'
+import Logon from '../page/Logon'
+
 
 Vue.use(Router)
 
@@ -17,7 +16,17 @@ export default new Router({
 		path: '/',
 		name: 'Home',
 		component: Home
-    },
+	},
+	{
+		path: '/login',
+		name: 'Login',
+		component: Login
+	},
+	{
+		path: '/logon',
+		name: 'Logon',
+		component: Logon
+	},
 	{
 		path: '/cart',
 		name: 'Cart',
@@ -28,28 +37,7 @@ export default new Router({
 		name: 'Details',
 		component: Details	
 	},
-	{
-		path: '/admin',
-		name: 'Admin',
-		component: Index,
-		children:[
-			{
-				path: 'new',
-				name: 'New',
-				component: New
-			},
-			{
-				path: '/',
-				name: 'Product',
-				component: Product
-			},
-			{
-				path: 'edit/:id',
-				name: 'Edit',
-				component: Edit
-			}
-		]
-	},
+	
 	{
 		path: '/vuex',
 		name: 'Vuex',

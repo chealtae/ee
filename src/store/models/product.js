@@ -3,20 +3,23 @@ import axios from 'axios'
 const state= {
     // bought items
     cart: [
-        {id: 100, name: 'matepro 40', manufacturer: 100, price:8000, image:'华为.png',description:'华为最新手机'},
-        {id: 200, name: 'iphone 11', manufacturer: 200, price:10000, image:'苹果.png',description:'苹果最新手机'}
+        {id: 1,typeid: 100 ,goodsName:'包邮 IOPE亦博气垫粉底霜 ',introduce: '看似是粉饼状，其实涂起来是液体粉底的质地',price: 200,img: 'images/product/01.jpg'},
+        {id: 2,typeid: 100 ,goodsName:'正品 魔法森林蜗牛面膜贴 ',introduce: '全棉布膜，透气，服帖！',price: 200,img: 'images/product/02.jpg'},
+        {id: 3,typeid: 100 ,goodsName:'现货 LANEIGE兰芝新概念BB水凝霜 ',introduce: '焕发健康水润 打造全新美丽',price: 120,img: 'images/product/03.jpg'},
     ],
     // ajax loader
     showLoader: false,
     // selected product
     product: {},
     // all products
-    products: [
-        {id: 100, name: 'matepro 40', manufacturer: 100, price:8000, image:'华为.png',description:'华为最新手机'},
-        {id: 200, name: 'iphone 11', manufacturer: 200, price:10000, image:'苹果.png',description:'苹果最新手机'},
-        {id: 300, name: 'vivo2020', manufacturer: 300, price:7000, image:'vivo.png',description:'vivo最新手机'},
-
-    ],
+    products:[
+      {id: 1,typeid: 100 ,goodsName:'包邮 IOPE亦博气垫粉底霜 ',introduce: '看似是粉饼状，其实涂起来是液体粉底的质地',price: 200,img: 'images/product/01.jpg'},
+      {id: 2,typeid: 100 ,goodsName:'正品 魔法森林蜗牛面膜贴 ',introduce: '全棉布膜，透气，服帖！',price: 200,img: 'images/product/02.jpg'},
+      {id: 3,typeid: 100 ,goodsName:'现货 LANEIGE兰芝新概念BB水凝霜 ',introduce: '焕发健康水润 打造全新美丽',price: 120,img: 'images/product/03.jpg'},
+      {id: 4,typeid: 100 ,goodsName:' 幻金凝彩完美抗皱bb霜 裸妆 遮瑕 ',introduce: '狙击痘印暗黄 自然提亮 拒绝假白',price: 148,img: 'images/product/04.jpg'},
+      {id: 5,typeid: 100 ,goodsName:' 猫女染色液体唇彩 唇水 ',introduce: '丝绒轻雾 盈润朝露 双重质地 细腻触感',price: 48,img: 'images/product/05.jpg'},
+      {id: 6,typeid: 100 ,goodsName:'完美红色全效bb霜 防晒裸妆遮瑕强 ',introduce: '提升原生水分感 使肌肤匀净透亮',price: 79,img: 'images/product/06.jpg'},
+  ],
     // all manufacturers
     manufacturers: [
         {id: 100, name: '华为'},

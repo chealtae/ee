@@ -1,2 +1,2 @@
-# hello
-模仿完成的第一个vue项目 作者链接https://github.com/christiannwamba
+# myshop
+通过vue框架，改写一个简单的静态网页，实现的化妆品电商网站。

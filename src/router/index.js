@@ -10,7 +10,7 @@ import Logon from '../page/Logon'
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   routes: [
     {
 		path: '/',
@@ -43,3 +43,18 @@ export default new Router({
   ]
 });
 
+router.beforeEach((to, from, next) => {
+    let getFlag = localStorage.getItem("Flag");
+	if(getFlag ==="islogin"){//如果登录状态是登录，无需拦截
+		next();
+	}else{
+		if(to.meta.isLogin ){//如果需要先登录 跳转到登录界面
+			next({path:'/login'})
+		}else{
+			next()
+		}
+	}
+
+});
+
+export default router

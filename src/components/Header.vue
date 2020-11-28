@@ -4,8 +4,9 @@
         <a name="top" id="top"></a>
         <div id="header_right">
             <ul id="language">
-                <li><router-link to="/login">登录</router-link></li>
-                <li><router-link to="/logon">注册</router-link></li>
+                <li v-if="isflag !=='isLogin'"><router-link to="/login">登录</router-link></li>
+                <li v-if="isflag !=='isLogin'" ><router-link to="/logon">注册</router-link></li>
+                <li v-else> <a @click="removeuser"> 注销</a> </li>
                 <li><router-link to="/cart">我的购物车</router-link></li>           
                 <li><router-link to="/updatepw">修改密码</router-link></li>
             </ul>
@@ -20,9 +21,21 @@
     </div>
 </template>
 <script>
+import router from '../router'
 export default {
   name: 'header',
-  components: {
+  computed:{
+    isflag(){
+       return localStorage.getItem("Flag")
+       
+    }
+  },
+  methods:{
+    removeuser(){
+      localStorage.removeItem("name")
+      localStorage.removeItem("Flag")
+      router.push("/login")
+    }
   }
 }
 </script>

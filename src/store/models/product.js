@@ -1,11 +1,16 @@
 import axios from 'axios'
+import router from '../../router'
 
 const state= {
+    //用户登录状态
+    name:'',
+    isLogin:false,
     // bought items
     cart: [
-        {id: 1,typeid: 100 ,goodsName:'包邮 IOPE亦博气垫粉底霜 ',introduce: '看似是粉饼状，其实涂起来是液体粉底的质地',price: 200,img: 'images/product/01.jpg'},
-        {id: 2,typeid: 100 ,goodsName:'正品 魔法森林蜗牛面膜贴 ',introduce: '全棉布膜，透气，服帖！',price: 200,img: 'images/product/02.jpg'},
-        {id: 3,typeid: 100 ,goodsName:'现货 LANEIGE兰芝新概念BB水凝霜 ',introduce: '焕发健康水润 打造全新美丽',price: 120,img: 'images/product/03.jpg'},
+        // {goodsnumber:1 ,name:'shan' ,amount:2},
+        // {goodsnumber:1 ,name:'shen' ,amount:2},
+        // {goodsnumber:2 ,name:'shan' ,amount:1},
+        // {goodsnumber:3 ,name:'shan' ,amount:1},
     ],
     // ajax loader
     showLoader: false,
@@ -35,7 +40,9 @@ const state= {
   }
   // GETTERS
   //getters: Object.assign({}, productGetters, manufacturerGetters)
+  //通过getters获取状态
   const getters ={
+    isLogin:state => state.islogin,
     allcart: (state) =>{
       return state.cart
     },
@@ -76,9 +83,13 @@ const state= {
     allManufacturers: state => state.manufacturers
   }
 
+  //设置属性的状态
   const mutations ={
     increment(state, payload){//Mutation 必须是同步函数
       state.count+=payload.amount
+    },
+    userStatus(state,payload){
+      state.isLogin = payload
     },
     saveProduct(state, payload){
         state.showLoader=true
@@ -103,6 +114,9 @@ const state= {
     allProducts(state, payload){
       state.products = payload
     },
+    allCart(state, payload){
+      state.cart = payload
+    },
     allManus(state, payload){
       state.manufacturers = payload
     },
@@ -116,6 +130,30 @@ const state= {
     // increment(context){
     //   context.commit('increment')
     // }
+    // 
+    //登录
+    login({commit},payload){
+      localStorage.setItem("name",payload.name);
+      axios.post(``,payload).then(response =>{
+        if(response.data){
+          commit('userStatus',response.data);
+          router.push("/")
+          localStorage.setItem("Flag","isLogin")
+          localStorage.setItem("username",payload.name);
+        }
+      })
+    },
+    logon({commit},payload){
+      axios.post(``,payload).then(response =>{
+        if(response.date){
+          commit();
+          alert("注册成功")
+          router.push("/login")
+        }else{
+          alert("注册失败")
+        }
+      })
+    },
     increment({commit}, payload){
       return new Promise((resolve)=>{
         setTimeout(() => {
@@ -144,10 +182,17 @@ const state= {
       axios.get(`http://localhost:9090/product/all`).then(response => {
         commit('allProducts', response.data)
       })
-      axios.get(`http://localhost:9090/manu/all`).then(response => {
-        commit('allManus', response.data)
+      
+    },
+
+    allCart({commit}){
+      //发送http请求
+      axios.get(` http://localhost:9090/product/all` ,localStorage.getItem(name)).then(response => {
+        commit('allCart', response.data)
       })
-    }
+      
+    },
+    
   }
 
   export default {

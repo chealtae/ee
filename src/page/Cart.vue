@@ -51,12 +51,12 @@ export default {
   },
   created () {
       if (this.cart.length === 0) {
-        this.$store.dispatch('p/allProducts')
+        this.$store.dispatch('p/allCart')
       }
     },
     computed:{
       cart(){
-        return this.$store.getters['p/allcart']
+        return this.$store.getters['p/allCart']
       },
       sum(){
           var sum = 0;

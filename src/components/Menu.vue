@@ -1,7 +1,7 @@
 <template>
     <div id="menu" class="ddsmoothmenu">
       <ul>
-        <li><a href="index.html" class="selected">首页</a></li>
+        <li><router-link to="/">首页</router-link></li>
         <li><a href="html/products.html" >产品分类</a>
             <ul >
               <li><a href="#">新品热卖</a></li>
